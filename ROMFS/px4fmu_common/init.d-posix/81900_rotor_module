@@ -15,7 +15,7 @@
 # Altered to be my rotor module
 
 sh /etc/init.d/rc.mc_defaults
-set MIXER rotor_module
+set MIXER coax
 
 if [ $AUTOCNF = yes ]
 then
