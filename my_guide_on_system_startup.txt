@@ -18,8 +18,9 @@ for a multicopter (mc) vehicle type.
 	#this script is run by the main px4 instance (an executable called px4, that can be found
 	#at 'Firmware/build/px4_sitl_default/bin/' after your have built for that target)
 	#First thing it does is to run the bash 'px4-alias.sh'. After that, it sets several default system
-	#parameters that can be changed afterwords by other scripts. It then runs two more scrtipts:
-	#rc.vehicle_setup and rc.logging
+	#parameters that can be changed afterwords by other scripts.
+	#It then runs the script 'sitl_run.sh'
+	#It then runs two more scrtipts: rc.vehicle_setup and rc.logging
 
 		- px4-alias.sh
 		#after built located at: Firmware/build/px4_sitl_default/bin/ (created)
@@ -27,14 +28,35 @@ for a multicopter (mc) vehicle type.
 		#this script just set the 'px4-' prefix keyword to run the other px4 modules and
 		#apps (both also exectables after the system is built)
 
+		- sitl_run.sh
+		#after built located at: not placed at build folder
+		#before built located at: Firmware/Tools/
+		#Not going into detail, what it does is it sets the simulator (gazebo for us) and select your model
+		#It also probably tells to run your config script for your system, that you must create (check it!!!!)
+
+			- my_model
+			#
+			#
+
 		- rc.vehicle_setup
 		#after built located at: Firmware/build/px4_sitl_default/tmp/rootfs/etc/init.d/ (notice it is also part of NuttX systems)
 		#before built located at: Firmware/ROMFS/px4fmu_common/init.d/  (notice it is also part of NuttX systems)
-		#
+		#First it acess the vehicle type from system parameter 'VEHICLE_TYPE'. On our case it is mc
+		#After it sets mav type from system parameter 'MAV_TYPE' or by looking at the mixer used
+		#Then it also runs two more scripts: rc.interface and rc.mc_apps
+
+			- rc.interface
+			#after built located at: Firmware/build/px4_sitl_default/tmp/rootfs/etc/init.d/ (notice it is also part of NuttX systems)
+			#before built located at:
+
+			- rc.mc_apps
+			#after built located at: Firmware/build/px4_sitl_default/tmp/rootfs/etc/init.d/ (notice it is also part of NuttX systems)
+			#before built located at:
 
 
 		- rc.logging
-		#
+		# (complete it...)
+		# Creates flight log...
 
 
 		*
