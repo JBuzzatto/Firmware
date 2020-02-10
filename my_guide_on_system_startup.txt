@@ -79,4 +79,7 @@ for a multicopter (mc) vehicle type.
 
 
 
+## 1.2 (NuttX) Startup scripts call hierarchy for default mc: ***do the same as above***
+
+
 

@@ -14,3 +14,23 @@ Even though it is good for flexibility, it makes it hard to track the flow of in
 
 **you will probably have to check on the 'build' folder to look for the running and/or built modules and check
 which topics they publish and subscribe to. (is there no documentation for that???)
+
+
+## 1 The flight stack or flight control diagram follows what is displaced at:
+ - https://dev.px4.io/master/en/concept/architecture.html#flight-stack
+
+#The thing that I was confuse the most is the flow of information, but it seems that the flow of information follows the diagram of the figure
+#After the attitude/rate controllers (the last called control block), its outputs are passed down to the mixer and them to the actuator drivers.
+#On the following, I will attempt to describe this two last blocks, mixer and actuator divers, stressing the flow of information as well.
+
+#*This is for the posix build (px4 sitl default)
+
+**- Mixer
+
+The mixer module, before build, is not together with the other modules. it is hidden on the lib folder, together with of other useful libraries.
+#after built located at: Firmware/build/px4_sitl_default/??? (notice it is also part of NuttX systems)
+#before built located at: Firmware/src/lib/
+	- There are two folder related to mixer there:
+		mixer/
+		mixer_module/
+
