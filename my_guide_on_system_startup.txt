@@ -29,7 +29,7 @@ for a multicopter (mc) vehicle type.
 		#apps (both also exectables after the system is built)
 
 		- sitl_run.sh
-		#after built located at: not placed at build folder
+		#after built located at: *not placed at build folder*
 		#before built located at: Firmware/Tools/
 		#Not going into detail, what it does is it sets the simulator (gazebo for us) and select your model
 		#It also probably tells to run your config script for your system, that you must create (check it!!!!)
@@ -47,11 +47,29 @@ for a multicopter (mc) vehicle type.
 
 			- rc.interface
 			#after built located at: Firmware/build/px4_sitl_default/tmp/rootfs/etc/init.d/ (notice it is also part of NuttX systems)
-			#before built located at:
+			#before built located at: Firmware/ROMFS/px4fmu_common/init.d/
+			#This script configures control interfaces. It sets several io related system parameters.
+			#if the system parameter 'OUTPUT_MODE' is set to 'io' or 'uavcan_esc' or 'IO_PRESENT' is 'yes', then it
+			#also runs the 'rc.io' script.
+			#It is also responsible for loading the main and aux mixer. If you want to skip it, the system parameter
+			# 'MIXER' can be set equal to 'skip'
+
+				- rc.io
+				#after built located at: Firmware/build/px4_sitl_default/tmp/rootfs/etc/init.d/ (notice it is also part of NuttX systems)
+				#before built located at: Firmware/ROMFS/px4fmu_common/init.d/
+				#does not do much. if you are on hil, it blocks control outputs. if you are not, it sets the output frequence
+				#and allow midair recovery.
 
 			- rc.mc_apps
 			#after built located at: Firmware/build/px4_sitl_default/tmp/rootfs/etc/init.d/ (notice it is also part of NuttX systems)
-			#before built located at:
+			#before built located at: Firmware/ROMFS/px4fmu_common/init.d/
+			#All it does is select the estimation method (standart is ekf2) and starts it. Then it starts more apps.
+			#The apps it starts are:
+				* ekf2
+				* mc_rate_control
+				* mc_att_control
+				* mc_pos_control
+				* land_detector (multicopter)
 
 
 		- rc.logging
@@ -59,6 +77,6 @@ for a multicopter (mc) vehicle type.
 		# Creates flight log...
 
 
-		*
+
 
 
