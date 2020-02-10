@@ -1,0 +1,16 @@
+
+quick notes for tomorow:
+
+**The mixer seems to be obligatory. I seems that the actuator commands are fired by the mixer module/app/whatever (check!!!)
+
+**the uORB msg/topics are in Firmware/msg before build.
+after build some script/whatever copyes/modify it to /Firmware/build/px4_sitl_default/uORB/topics/
+
+**all information from all modules comes from messages trough subscription/publishing
+
+**the att ctrl module (as any other module) will probably never send a message or information directly to other module.
+what it does is publish it on a topic on uORB. then any other module can access it.
+Even though it is good for flexibility, it makes it hard to track the flow of information in a system.
+
+**you will probably have to check on the 'build' folder to look for the running and/or built modules and check
+which topics they publish and subscribe to. (is there no documentation for that???)

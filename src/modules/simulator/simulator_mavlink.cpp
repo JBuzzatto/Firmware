@@ -85,6 +85,7 @@ mavlink_hil_actuator_controls_t Simulator::actuator_controls_from_outputs(const 
 	const float pwm_center = (PWM_DEFAULT_MAX + PWM_DEFAULT_MIN) / 2;
 
 	int _system_type = _param_mav_type.get();
+	//PX4_INFO("param_mav_type = %d", _system_type);
 
 	/* scale outputs depending on system type */
 	if (_system_type == MAV_TYPE_QUADROTOR ||
