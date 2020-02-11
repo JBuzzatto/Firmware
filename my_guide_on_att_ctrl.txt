@@ -28,9 +28,33 @@ which topics they publish and subscribe to. (is there no documentation for that?
 **- Mixer
 
 The mixer module, before build, is not together with the other modules. it is hidden on the lib folder, together with of other useful libraries.
-#after built located at: Firmware/build/px4_sitl_default/??? (notice it is also part of NuttX systems)
+#after built located at: Firmware/build/px4_sitl_default/src/lib/ (notice it is also part of NuttX systems)
 #before built located at: Firmware/src/lib/
-	- There are two folder related to mixer there:
-		mixer/
-		mixer_module/
+- There are two folder related to mixer there:
+	mixer_module/
+	mixer/
+
+
+	- mixer_module
+	#It is the module that define the functions that handles everything related
+	#to actuation management, it is the interface between the controller's normalized outputs to the actuator drives.
+	#It is mainly composed of the class 'MixingOutput', which uses a simple template class for defining output modules, defined in the same file.
+	#However, on its header file, it includes mixer.h which is from the mixer/ folder.
+
+	- mixer
+	#The mixer folder contain piece of code/information you were looking for.
+	#It explains how the mixing is done on code level, and conceptally as well. (header file)
+	#
+	#On this mixer folder there is also the script that generates the .cpp mixer files. It is a python script,
+	#and it transforms the geometries 4+, 4x and so on into the proper mixing as you know it.
+		- px_generate_mixers.py
+	#especifically, it happens on its line 187 of the code, where the matrix pseldo-inverse is calculated.
+	#This matrix is then normalized after that the code goes on into creating the headers and source files for the mixer in c++
+
+
+
+
+
+
+
 
