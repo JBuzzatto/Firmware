@@ -1,0 +1,5 @@
+##important files:
+
+Firmware/boards/px4/sitl/default.cmake
+
+Firmware/platforms/posix/cmake/sitl_target.cmake

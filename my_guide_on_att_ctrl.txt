@@ -51,6 +51,13 @@ The mixer module, before build, is not together with the other modules. it is hi
 	#especifically, it happens on its line 187 of the code, where the matrix pseldo-inverse is calculated.
 	#This matrix is then normalized after that the code goes on into creating the headers and source files for the mixer in c++
 
+##**However, it sems that there is no mixer module build. Instead, what is in the build folder is an executable called mixer.
+#I suspect that this is only to make it available the mixer commands. Furthermore, the mixer command only has the function to
+#load or append "mixer files to the ESC driver." It is further said that the driver must support the use of "ioctl's".
+#This leads me to beleave that the mixers ends up to being just a file used by the output drivers, and not an application itself.
+
+*****investigate how the output drivers work and how it uses ioctl and the mixers files****
+
 
 
 
