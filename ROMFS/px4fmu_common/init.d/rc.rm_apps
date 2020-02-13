@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# Standard apps for Rotor module. Attitude/Position estimator, Attitude/Position control.
+#
+# NOTE: Script variables are declared/initialized/unset in the rcS script.
+#
+
+###############################################################################
+#                       Begin Estimator Group Selection                       #
+###############################################################################
+
+ekf2 start
+
+###############################################################################
+#                        End Estimator Group Selection                        #
+###############################################################################
+
+#
+# Start Multicopter Rate Controller.
+#
+mc_rate_control start
+
+#
+# Start Multicopter Attitude Controller.
+#
+mc_att_control start
+
+#
+# Start Multicopter Position Controller.
+#
+mc_pos_control start
+
+#
+# Start Multicopter Land Detector.
+#
+land_detector start multicopter

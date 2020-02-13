@@ -27,7 +27,7 @@ which topics they publish and subscribe to. (is there no documentation for that?
 
 **- Mixer
 
-The mixer module, before build, is not together with the other modules. it is hidden on the lib folder, together with of other useful libraries.
+The mixer module, before build, is not together with the other modules. It is hidden on the lib folder, together with of other useful libraries.
 #after built located at: Firmware/build/px4_sitl_default/src/lib/ (notice it is also part of NuttX systems)
 #before built located at: Firmware/src/lib/
 - There are two folder related to mixer there:
@@ -41,6 +41,10 @@ The mixer module, before build, is not together with the other modules. it is hi
 	#It is mainly composed of the class 'MixingOutput', which uses a simple template class for defining output modules, defined in the same file.
 	#However, on its header file, it includes mixer.h which is from the mixer/ folder.
 
+	#**For the simulation, the control commands are send as a mavlink message. This message takes its data directly from
+	#the actuator_outputs uORB topic/message. The mixer module contains the code for publishing this message.
+
+
 	- mixer
 	#The mixer folder contain piece of code/information you were looking for.
 	#It explains how the mixing is done on code level, and conceptally as well. (header file)
@@ -51,14 +55,36 @@ The mixer module, before build, is not together with the other modules. it is hi
 	#especifically, it happens on its line 187 of the code, where the matrix pseldo-inverse is calculated.
 	#This matrix is then normalized after that the code goes on into creating the headers and source files for the mixer in c++
 
+
 ##**However, it sems that there is no mixer module build. Instead, what is in the build folder is an executable called mixer.
 #I suspect that this is only to make it available the mixer commands. Furthermore, the mixer command only has the function to
 #load or append "mixer files to the ESC driver." It is further said that the driver must support the use of "ioctl's".
 #This leads me to beleave that the mixers ends up to being just a file used by the output drivers, and not an application itself.
 
-*****investigate how the output drivers work and how it uses ioctl and the mixers files****
+*****investigate how the output drivers work and how it uses ioctl and the mixers files*****
+
+## 2 Usage on simulation
+	#in short, the driver calls upon the mixer and the pixer publishes to uORB
+	- All internal communication is handled by uORB. The regular loop call hierarchy is as follows:
+		PWMSim::Run -> MixingOutput::update -> MixingOutput::setAndPublishActuatorOutputs -> publish to uORB
+
+	- The message in published to uORB is actuator_outputs, which is this case is pwm
+
+#*#*#*#*# The best thing to see the flow of information is to see the doxygen documentation and graphs:
+
+https://px4.github.io/Firmware-Doxygen/index.html
 
 
+
+
+======**Useful debug commands**======
+
+**mavlink
+
+
+**uorb
+
+**??
 
 
 

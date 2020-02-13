@@ -78,6 +78,7 @@ px4_add_romfs_files(
 	tri_y_yaw-.main.mix
 	tri_y_yaw+.main.mix
 	rover_generic.main.mix
+	rotor_module.main.mix
 	Viper.main.mix
 	vtol_AAERT.aux.mix
 	vtol_AAVVT.aux.mix

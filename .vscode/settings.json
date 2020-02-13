@@ -94,7 +94,13 @@
                 "functional": "cpp",
                 "tuple": "cpp",
                 "utility": "cpp",
-                "variant": "cpp"
+                "variant": "cpp",
+                "*.ipp": "cpp",
+                "unordered_map": "cpp",
+                "fstream": "cpp",
+                "ostream": "cpp",
+                "sstream": "cpp",
+                "*.desc": "cpp"
         },
         "search.exclude": {
                 "build/**": true

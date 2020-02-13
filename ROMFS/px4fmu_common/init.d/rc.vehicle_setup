@@ -148,6 +148,33 @@ then
 fi
 
 #
+# My Rotor Module setup.
+#
+if [ $VEHICLE_TYPE = rm ]
+then
+	if [ $MIXER = none ]
+	then
+		# Print an allert
+		echo "Rotor Module mixer undefined"
+	fi
+
+	if [ $MAV_TYPE = none ]
+	then
+		# Set a default MAV_TYPE = 0, which is a generic MAV.
+		set MAV_TYPE 0
+	fi
+
+	# Set the mav type parameter.
+	param set MAV_TYPE ${MAV_TYPE}
+
+	# Load mixer and configure outputs.
+	sh /etc/init.d/rc.interface
+
+	# Start standard rotor module apps.
+	sh /etc/init.d/rc.rm_apps
+fi
+
+#
 # Generic setup (autostart ID not found).
 #
 if [ $VEHICLE_TYPE = none ]
@@ -155,3 +182,5 @@ then
 	echo "No autostart ID found"
 	ekf2 start
 fi
+
+
