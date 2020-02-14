@@ -64,11 +64,13 @@ The mixer module, before build, is not together with the other modules. It is hi
 *****investigate how the output drivers work and how it uses ioctl and the mixers files*****
 
 ## 2 Usage on simulation
-	#in short, the driver calls upon the mixer and the pixer publishes to uORB
+	#in short, the PWMSim driver calls upon the mixer, the mixer take the actuator_controls msgs,
+	#do the mixing and publishes actuator_outputs to uORB
 	- All internal communication is handled by uORB. The regular loop call hierarchy is as follows:
 		PWMSim::Run -> MixingOutput::update -> MixingOutput::setAndPublishActuatorOutputs -> publish to uORB
 
 	- The message in published to uORB is actuator_outputs, which is this case is pwm
+	- After that, the px4 simulator takes actuator_outputs msgs and send it to gazebo via mavlink
 
 #*#*#*#*# The best thing to see the flow of information is to see the doxygen documentation and graphs:
 
@@ -81,7 +83,18 @@ It seems to be the function that control the behaviour of the vehicle to control
 However so, the att ctrl does not publish the actuator_controls, which is the main input for the mixer module.
 Instead, it publishes vehicle_rates_setpoint, which is the input for mc_rate_control module.
 This makes the rate controller the last block in the information flow up to the mixer, for multicopters.
+
 The rate controller is the one who publishes actuator_controls.
+
+There is a interesting discussion about mixing on the forum:
+https://discuss.px4.io/t/mixer-customization-and-override/12098/5
+
+It seems to be recomended that you create your own mixing system:
+https://discuss.px4.io/t/mixer-customization-and-override/12098/8
+
+
+
+
 
 ======**Useful debug commands**======
 
