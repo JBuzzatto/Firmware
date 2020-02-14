@@ -11,12 +11,13 @@ if [ $AUTOCNF = yes ]
 then
 	param set NAV_ACC_RAD 2
 
-	param set RTL_RETURN_ALT 2
-	param set RTL_DESCEND_ALT 1
+	param set RTL_RETURN_ALT 20
+	param set RTL_DESCEND_ALT 10
 	param set RTL_LAND_DELAY 0
 
 	param set PWM_MAX 1950
 	param set PWM_MIN 1075
+	echo "$AUTOCNF = yes!"
 	#param set PWM_RATE 400
 fi
 
@@ -29,7 +30,7 @@ set PWM_RATE 50
 #
 # Enable servo output on pins 1-4
 set PWM_OUT 1234
-set PWM_DISARMED 1500
+set PWM_DISARMED 1050
 
 
 #
@@ -38,3 +39,5 @@ set PWM_DISARMED 1500
 set MIXER_AUX pass
 set PWM_AUX_OUT 1234
 set PWM_AUX_RATE 50
+
+echo "Rotor Module rc.rm_defaults runned!"

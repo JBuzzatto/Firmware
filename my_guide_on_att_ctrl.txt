@@ -75,7 +75,13 @@ The mixer module, before build, is not together with the other modules. It is hi
 https://px4.github.io/Firmware-Doxygen/index.html
 
 
-
+**The easiest way to customize the attitude controlles seems to be by altering the function:
+	MulticopterAttitudeControl::generate_attitude_setpoint(float dt, bool reset_yaw_sp)
+It seems to be the function that control the behaviour of the vehicle to control attitude.
+However so, the att ctrl does not publish the actuator_controls, which is the main input for the mixer module.
+Instead, it publishes vehicle_rates_setpoint, which is the input for mc_rate_control module.
+This makes the rate controller the last block in the information flow up to the mixer, for multicopters.
+The rate controller is the one who publishes actuator_controls.
 
 ======**Useful debug commands**======
 

@@ -26,11 +26,18 @@ mc_rate_control start
 mc_att_control start
 
 #
+# Start my Rotor Module Attitude Controller.
+#
+#rm_att_control start
+
+#
 # Start Multicopter Position Controller.
 #
-mc_pos_control start
+#mc_pos_control start
 
 #
 # Start Multicopter Land Detector.
 #
 land_detector start multicopter
+
+echo "Rotor Module rc.rm_apps runned!"

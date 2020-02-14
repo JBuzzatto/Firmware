@@ -14,6 +14,8 @@
 
 # Altered to be my rotor module
 
+echo "Rotor Module 81900_rotor_module config file runned!"
+
 sh /etc/init.d/rc.rm_defaults
 
 if [ $AUTOCNF = yes ]

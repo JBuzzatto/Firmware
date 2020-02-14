@@ -172,6 +172,8 @@ then
 
 	# Start standard rotor module apps.
 	sh /etc/init.d/rc.rm_apps
+
+	echo "Rotor Module rc.vehicle_setup runned!"
 fi
 
 #
