@@ -6,3 +6,11 @@ Firmware/boards/px4/sitl/default.cmake
 
 Firmware/platforms/posix/cmake/sitl_target.cmake
 	- on here you add your gazebo model as a target as well
+
+
+##For the real hardware, Pixhawk 1 in our case, the hardware is in accordance with fmu-v2.
+The make command would be, for standard:
+	make px4_fmu-v2_default
+
+However, you can just create your own .cmake file, as it is done for the examples multicopter.cmake and fixedwing.cmake files
+already in the Firmware/boards/px4/fmu-v2/ folder.
